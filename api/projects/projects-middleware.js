@@ -18,9 +18,7 @@ function validateId(req, res, next) {
   });
 }
 function validatePost(req, res, next) {
-  req.body.name && req.body.description
-    ? next()
-    : next({ message: "missing name or description!", status: 400 });
+  req.body.name && req.body.description ? next() : next({ status: 400 });
 }
 
 // do not forget to expose these functions to other modules

@@ -7,14 +7,16 @@ function logger(req, res, next) {
   next();
 }
 
-function validateId(req, res, next) {
+async function validateId(req, res, next) {
   const { id } = req.params;
-  Actions.get(id).then((possibleAction) => {
-    if (possibleAction) {
-      req.action = possibleAction;
-      next();
-    } else next({ message: "Action not found", status: 404 });
-  });
+  await Actions.get(id)
+    .then((possibleAction) => {
+      if (possibleAction) {
+        req.action = possibleAction;
+        next();
+      } else next({ message: "Action not found", status: 404 });
+    })
+    .catch(next);
 }
 function validatePost(req, res, next) {
   req.body.project_id &&

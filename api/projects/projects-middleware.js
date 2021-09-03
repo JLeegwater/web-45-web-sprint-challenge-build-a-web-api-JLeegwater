@@ -10,12 +10,14 @@ function logger(req, res, next) {
 
 async function validateId(req, res, next) {
   const { id } = req.params;
-  await Projects.get(id).then((possibleProject) => {
-    if (possibleProject) {
-      req.project = possibleProject;
-      next();
-    } else next({ message: "Project not found", status: 404 });
-  });
+  await Projects.get(id)
+    .then((possibleProject) => {
+      if (possibleProject) {
+        req.project = possibleProject;
+        next();
+      } else next({ message: "Project not found", status: 404 });
+    })
+    .catch(next);
 }
 function validatePost(req, res, next) {
   req.body.name && req.body.description && req.body.completed != null

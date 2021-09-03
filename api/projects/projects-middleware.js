@@ -18,7 +18,9 @@ function validateId(req, res, next) {
   });
 }
 function validatePost(req, res, next) {
-  req.body.name && req.body.description ? next() : next({ status: 400 });
+  req.body.name && req.body.description && req.body.completed != null
+    ? next()
+    : next({ status: 400 });
 }
 
 // do not forget to expose these functions to other modules

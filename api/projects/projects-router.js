@@ -36,9 +36,7 @@ router.put("/:id", validateId, validatePost, (req, res, next) => {
 });
 
 router.delete("/:id", validateId, (req, res, next) =>
-  Projects.remove(req.params.id)
-    .then(() => res.status(200))
-    .catch(next)
+  Projects.remove(req.params.id).then(res.status(200)).catch(next)
 );
 
 router.get("/:id/actions", validateId, (req, res, next) => {

@@ -8,9 +8,9 @@ function logger(req, res, next) {
   next();
 }
 
-function validateId(req, res, next) {
+async function validateId(req, res, next) {
   const { id } = req.params;
-  Projects.get(id).then((possibleProject) => {
+  await Projects.get(id).then((possibleProject) => {
     if (possibleProject) {
       req.project = possibleProject;
       next();

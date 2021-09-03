@@ -1,10 +1,6 @@
 // Write your "actions" router here!
 const express = require("express");
-const {
-  logger,
-  validateId,
-  validatePost,
-} = require("./projects-middleware.js");
+const { logger, validateId, validatePost } = require("./actions-middlware");
 const Actions = require("./actions-model.js");
 
 const router = express.Router();
